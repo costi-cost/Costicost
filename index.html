@@ -1348,6 +1348,7 @@ $$('.p-card').forEach(el=>revObs.observe(el));
     const m=MODELS[cur],token=++loadToken;
     $$('.mv-chip').forEach((c,k)=>c.classList.toggle('active',k===cur));
     countEl.textContent=arInt(cur+1)+' / '+arInt(MODELS.length);
+    if(m.img)main.setAttribute('poster',m.img);
     if(fbImg&&m.img)fbImg.src=m.img;
     /* smooth switch: fade stage + info out, swap while hidden, fade back on load */
     stage.classList.add('sw');
@@ -1406,7 +1407,7 @@ $$('.p-card').forEach(el=>revObs.observe(el));
       es.forEach(en=>{
         if(en.isIntersecting){apply(0);obs.disconnect()}
       });
-    },{rootMargin:'350px'}).observe(stage);
+    },{rootMargin:'900px'}).observe(stage);
   }else apply(0);
   /* fallback notice if the viewer lib never arrives */
   const hideFb=()=>{if(fallback)fallback.style.display='none'};
