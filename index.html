@@ -477,7 +477,6 @@ body.pm-open .pmodal{opacity:1;visibility:visible;transform:translate(-50%,-50%)
 .mv3d .sec-sub{margin-inline:auto}
 .mv-stage{position:relative;height:clamp(360px,50vw,480px);border-radius:30px;border:1px solid var(--line);
   background:radial-gradient(70% 60% at 50% 32%,var(--tile-a),var(--tile-b) 80%);overflow:hidden;box-shadow:var(--shadow)}
-.mv-fbimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;display:none}
 #mv-main{width:100%;height:100%;--poster-color:transparent;--progress-bar-color:var(--gold);--progress-mask:transparent;
   transition:opacity .3s ease,transform .3s ease}
 .mv-podium{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);width:min(460px,72%);height:100px;pointer-events:none;z-index:0;
@@ -1322,8 +1321,6 @@ $$('.p-card').forEach(el=>revObs.observe(el));
 /* ---------- 3D GALLERY: one viewer + 16 switchable models (lazy) ---------- */
 (function(){
   const stage=$('#mv-stage'),main=$('#mv-main'),chipsEl=$('#mv-chips'),fallback=$('#mv-fallback');
-  const fbImg=document.createElement('img');fbImg.className='mv-fbimg';fbImg.alt='';
-  stage.insertBefore(fbImg,fallback);
   const nameTx=$('#mv-name-tx'),name2=$('#mv-name2'),descEl=$('#mv-desc'),
         countEl=$('#mv-count'),rotBtn=$('#mv-rot'),prev=$('#mv-prev'),next=$('#mv-next');
   const catEl=$('#mv-cat'),oldEl=$('#mv-old'),rateEl=$('#mv-rate'),specEl=$('#mv-specs'),infoEl=$('#mv-info');
@@ -1358,8 +1355,6 @@ $$('.p-card').forEach(el=>revObs.observe(el));
     const m=MODELS[cur],token=++loadToken;
     $$('.mv-chip').forEach((c,k)=>c.classList.toggle('active',k===cur));
     countEl.textContent=arInt(cur+1)+' / '+arInt(MODELS.length);
-    if(m.img)main.setAttribute('poster',m.img);
-    if(fbImg&&m.img)fbImg.src=m.img;
     /* smooth switch: fade stage + info out, swap while hidden, fade back on load */
     stage.classList.add('sw');
     infoEl.classList.add('sw');
@@ -1381,7 +1376,7 @@ $$('.p-card').forEach(el=>revObs.observe(el));
         main.addEventListener('load',onLoaded,{once:true});
         main.setAttribute('src',url);
         setTimeout(onLoaded,9000);
-      }).catch(()=>{if(fbImg)fbImg.style.display='block';show();});
+      }).catch(show);
     },280);
   }
   chipsEl.addEventListener('click',e=>{
@@ -1392,7 +1387,8 @@ $$('.p-card').forEach(el=>revObs.observe(el));
   next.addEventListener('click',()=>apply(cur+1));
   $('#mv-add').addEventListener('click',()=>{
     const m=MODELS[cur],pn=m.prodName||m.name;
-    addToCart({name:pn,n:m.n,art:m.art});
+    const cp=catalog.find(function(c){return c.name===pn});
+    addToCart({name:pn,n:cp?cp.n:0,img:cp?cp.img:'',art:cp?cp.art:m.art});
     flyToCart($('#mv-add'));
     toastShow(pn+' — اتضاف للسلة');
   });
@@ -1409,14 +1405,12 @@ $$('.p-card').forEach(el=>revObs.observe(el));
   }
   if(rotating)main.setAttribute('auto-rotate',''),main.setAttribute('rotation-per-second','14deg');
   rotBtn.addEventListener('click',()=>setRot(!rotating));
+  main.addEventListener('error',()=>{
+    const f=$('#mv-fallback');
+    if(f){f.style.display='';f.querySelector('span').textContent='حصلت مشكلة في تحميل الموديل — جرّب تحديث الصفحة'}
+  });
   /* lazy: first model loads only when the section approaches the viewport */
-  if('IntersectionObserver' in window){
-    new IntersectionObserver((es,obs)=>{
-      es.forEach(en=>{
-        if(en.isIntersecting){apply(0);obs.disconnect()}
-      });
-    },{rootMargin:'900px'}).observe(stage);
-  }else apply(0);
+  apply(0);
   /* fallback notice if the viewer lib never arrives */
   const hideFb=()=>{if(fallback)fallback.style.display='none'};
   if(window.customElements){
@@ -1424,8 +1418,7 @@ $$('.p-card').forEach(el=>revObs.observe(el));
     else customElements.whenDefined('model-viewer').then(hideFb).catch(()=>{});
     setTimeout(()=>{
       if(!customElements.get('model-viewer')&&fallback){
-        fallback.querySelector('span').textContent='العرض ثلاثي الأبعاد مش متاح على المتصفح ده — ده شكل المنتج الحقيقي';
-        if(fbImg)fbImg.style.display='block';
+        fallback.querySelector('span').textContent='العرض ثلاثي الأبعاد مش متاح على المتصفح ده';
         prev.style.display='none';next.style.display='none';
         if(rotBtn)rotBtn.style.display='none';
       }
