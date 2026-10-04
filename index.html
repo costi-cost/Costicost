@@ -673,6 +673,20 @@ html.lock{overflow:hidden}
 #loader.out .ld-top{transform:translateY(-103%) rotate(-.8deg);transform-origin:0 0}
 #loader.out .ld-bot{transform:translateY(103%) rotate(-.8deg);transform-origin:100% 100%}
 
+/* ============ V23: pages + modal separators + featured ============ */
+main{display:block}
+main[hidden]{display:none!important}
+#pm-desc h5{margin:16px 0 6px;padding-top:12px;border-top:1px dashed var(--line);
+  font:700 .95rem var(--font-d);color:var(--gold)}
+#pm-desc h5:first-child{margin-top:2px;padding-top:0;border-top:0}
+#pm-desc .fi{position:relative;padding-inline-start:16px;margin:7px 0;color:var(--ink);font-size:.93rem;line-height:1.75}
+#pm-desc .fi::before{content:"";position:absolute;inset-inline-start:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+#pm-desc .fi:first-child{padding:0 0 12px;margin:0 0 4px;font-weight:500;color:var(--mut);border-bottom:1px solid var(--line)}
+#pm-desc .fi:first-child::before{display:none}
+.pm-note{margin-top:14px;padding:10px 14px;border-radius:12px;background:rgba(138,107,37,.08);
+  border:1px dashed rgba(138,107,37,.35);color:var(--gold-deep);font-weight:700;font-size:.88rem}
+.feat-cta{text-align:center;margin-top:38px}
+
 /* motion always on (site owner's choice) — animations replaced by none */
 </style>
 </head>
@@ -705,8 +719,7 @@ html.lock{overflow:hidden}
     <nav>
       <ul class="nav-links">
         <li><a href="#home" class="active">الرئيسية</a></li>
-        <li><a href="#products">المتجر</a></li><li><a href="#products">المنتجات</a></li>
-        <li><a href="#journey">جولة المطبخ</a></li>
+        <li><a href="#store">المتجر</a></li>
         <li><a href="#reviews">آراء العملاء</a></li>
         <li><a href="#contact">تواصل معنا</a></li>
       </ul>
@@ -720,7 +733,7 @@ html.lock{overflow:hidden}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2.5l2.2 12.2a1.5 1.5 0 0 0 1.5 1.3h7.9a1.5 1.5 0 0 0 1.5-1.2L20.5 7H6"/></svg>
         <span class="cart-count" id="cart-count">٠</span>
       </button>
-      <a href="#products" class="btn btn-primary btn-nav" data-magnet>تسوّق دلوقتي</a>
+      <a href="#store" class="btn btn-primary btn-nav" data-magnet>تسوّق دلوقتي</a>
       <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span></button>
     </div>
   </div>
@@ -728,8 +741,7 @@ html.lock{overflow:hidden}
 
 <div class="m-menu" id="m-menu">
   <a class="m-link" href="#home">الرئيسية</a>
-  <a class="m-link" href="#products">المتجر</a>
-  <a class="m-link" href="#journey">جولة المطبخ</a>
+  <a class="m-link" href="#store">المتجر</a>
   <a class="m-link" href="#reviews">آراء العملاء</a>
   <a class="m-link" href="#contact">تواصل معنا</a>
   <div class="m-foot"><span>شحن مجاني فوق ٢٠٠ ج.م</span><span>·</span><span>ضمان سنتين</span></div>
@@ -791,6 +803,8 @@ html.lock{overflow:hidden}
 </aside>
 
 <main>
+<main id="page-home">
+
 <!-- ================= HERO (centered stage) ================= -->
 <section class="hero" id="home">
   <div class="hero-stage container">
@@ -804,17 +818,13 @@ html.lock{overflow:hidden}
     </div>
 
     <div class="hero-ctas">
-      <a href="#products" class="btn btn-primary" data-magnet>
+      <a href="#store" class="btn btn-primary" data-magnet>
         تسوّق المتجر
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
       </a>
-      <a href="#journey" class="btn btn-ghost" data-magnet>جولة المطبخ</a>
+      <a href="#ring" class="btn btn-ghost" data-magnet>شوفها ٣٦٠ درجة</a>
     </div>
-    <div class="hero-trust">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h3.5l2.5 3v3h-6z"/><circle cx="7" cy="18" r="1.7"/><circle cx="16.5" cy="18" r="1.7"/></svg> شحن مجاني فوق ٢٠٠ ج.م</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 20 5v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/></svg> ضمان سنتين</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg> إرجاع ١٤ يوم</span>
-    </div>
+    
     <div class="hero-3d" aria-hidden="true">
       <div class="hv-arch">
         <span class="hv-wisp ws1"></span><span class="hv-wisp ws2"></span><span class="hv-wisp ws3"></span>
@@ -854,16 +864,21 @@ html.lock{overflow:hidden}
   </div>
 </div>
 
-<!-- ================= PRODUCTS ================= -->
-<section class="products" id="products">
+<!-- ================= FEATURED (landing) ================= -->
+<section class="products" id="featured">
   <div class="container">
     <div class="sec-head">
-      <span class="chip" data-rv="pop">الأكثر مبيعاً في مصر</span>
-      <h2 class="sec-title" data-rv="wipe" data-delay="60">القطع اللي كل بيت <span class="acu">بتدوّر عليها</span></h2>
-      <p class="sec-sub" data-rv data-delay="120">١٣ منتج مختار بعناية من أحلى أدوات المطبخ — جرّبه مرة، وبقية حياتك معاه.</p>
+      <span class="chip" data-rv="pop">مختارات أوانيستا</span>
+      <h2 class="sec-title" data-rv="wipe" data-delay="60">أحلى اللي عندنا <span class="acu">متجمعينلك</span></h2>
+      <p class="sec-sub" data-rv data-delay="120">تشكيلة مختارة من أقوى منتجاتنا — والمزيد كله جوه المتجر.</p>
     </div>
-    <div class="filters" data-rv data-delay="160" id="filters"></div>
-    <div class="p-grid" id="p-grid"></div>
+    <div class="p-grid" id="feat-grid"></div>
+    <div class="feat-cta" data-rv data-delay="220">
+      <a href="#store" class="btn btn-primary" data-magnet>
+        شوف المتجر كله — ١٣ منتج
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -872,45 +887,6 @@ html.lock{overflow:hidden}
   <div class="st-mark" id="st-mark" aria-hidden="true">أوانيستا</div>
   <div class="container">
     <p class="st-text" data-rv>أدوات مطبخ مش بتتصنع عشان تتباع وبس — بتتصنع عشان <b>تدوم</b>. من أول فطار في الصبح، لحد آخر فنجان في السهر. <b>جودة</b> هتحس بيها بإيدك من أول استخدام، وطعم أكلك البيتي عمره ما هيتنسى.</p>
-  </div>
-</section>
-
-<!-- ================= JOURNEY (pinned horizontal scrub) ================= -->
-<section class="journey" id="journey">
-  <div class="j-pin">
-    <span class="j-count"><span id="j-cur">١</span> / ٤</span>
-    <div class="j-head container">
-      <span class="chip" data-rv="pop">رحلة اليوم في مطبخك</span>
-      <h2 class="sec-title" data-rv="wipe" data-delay="60">من أول فطار <span class="acu">لآخر سهر</span></h2>
-      <p class="sec-sub" data-rv data-delay="120">كمّل النزول — من صباحك لآخر سهر، كل وقت له أدواته.</p>
-    </div>
-    <div class="j-track" id="j-track">
-      <div class="j-panel">
-        <span class="j-num">٠١ — الفطار</span>
-        <h3>صبح أول اليوم</h3>
-        <p>الشاي بيغلي على نار هادية، والبيض بيتقلّب بمقلق سيليكون مش بيخدش التيفال.</p>
-        <div class="j-art" data-jart="kettle"></div>
-      </div>
-      <div class="j-panel">
-        <span class="j-num">٠٢ — الغدا</span>
-        <h3>أهم معلمة في اليوم</h3>
-        <p>الطاسة الجرانيت بتحمّر البصل من غير ما تلزق، والقدر بيسوّي الرز حبّة حبّة.</p>
-        <div class="j-art" data-jart="pot"></div>
-      </div>
-      <div class="j-panel">
-        <span class="j-num">٠٣ — العشا</span>
-        <h3>تقطيع على وضع</h3>
-        <p>سكاكين شيف حدة خرافية على لوح زان — أي حاجة بتتقطع زي الزبدة.</p>
-        <div class="j-art" data-jart="knives"></div>
-      </div>
-      <div class="j-panel">
-        <span class="j-num">٠٤ — السهر</span>
-        <h3>آخر فنجان</h3>
-        <p>نسكافيه الآخر في الليل، والقعدة اللي مبتخلصش — أوانيستا معاك لآخر الليل.</p>
-        <div class="j-art" data-jart="whisk"></div>
-      </div>
-    </div>
-    <div class="j-progress"><i id="j-fill"></i></div>
   </div>
 </section>
 
@@ -931,7 +907,7 @@ html.lock{overflow:hidden}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         <span id="mv-name-tx">مقلاية الجرانيت — سافلون</span>
       </div>
-      <div class="mv-count" id="mv-count">١ / ٧</div>
+      <div class="mv-count" id="mv-count">١ / ٣</div>
       <button class="mv-rot" id="mv-rot" aria-label="إيقاف وتشغيل الدوران">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
       </button>
@@ -959,7 +935,6 @@ html.lock{overflow:hidden}
       <div class="mv-buy">
         <div class="mv-fade mv-buycol" id="mv-fade-buy">
           <div class="mv-rate" id="mv-rate"></div>
-          <div class="mv-prices"><b id="mv-price">٢٤٩٩ ج.م</b><s id="mv-old"></s></div>
         </div>
         <button class="btn btn-primary" id="mv-add">أضف للسلة
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -1071,6 +1046,24 @@ html.lock{overflow:hidden}
 </section>
 </main>
 
+</main>
+
+<main id="page-store" hidden>
+<!-- ================= PRODUCTS ================= -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="sec-head">
+      <span class="chip" data-rv="pop">متجر أوانيستا</span>
+      <h2 class="sec-title" data-rv="wipe" data-delay="60">كل منتجات <span class="acu">أوانيستا</span> في مكان واحد</h2>
+      <p class="sec-sub" data-rv data-delay="120">١٣ منتج مختار بعناية من أحلى أدوات المطبخ — جرّبه مرة، وبقية حياتك معاه.</p>
+    </div>
+    <div class="filters" data-rv data-delay="160" id="filters"></div>
+    <div class="filters" data-rv data-delay="160" id="filters"></div>
+    <div class="p-grid" id="p-grid"></div>
+  </div>
+</section>
+</main>
+
 <!-- ================= FOOTER ================= -->
 <footer id="contact">
   <div class="container">
@@ -1136,6 +1129,7 @@ const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
 const AR_D=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
 const arInt=n=>String(n).replace(/\d/g,d=>AR_D[d]);
 const arDec=(v,d)=>{const s=v.toFixed(d);return s.replace(/\d/g,d=>AR_D[d])};
+const ar2num=t=>parseInt(String(t).replace(/[٠-٩]/g,d=>AR_D.indexOf(d)).replace(/[^0-9]/g,''))||0;
 const reduceMotion = /[?&#]motion=0/.test(location.search + '#' + location.hash); /* motion is always ON unless explicitly disabled via ?motion=0 */
 const savedTheme=localStorage.getItem('awanista-theme-v3')||'light';
 document.documentElement.setAttribute('data-theme',savedTheme);
@@ -1154,7 +1148,7 @@ document.body.classList.add('loaded');
 const nav=$('#nav');
 function navState(){nav.classList.toggle('scrolled',scrollY>24)}
 addEventListener('scroll',navState,{passive:true});navState();
-const secIds=['home','products','journey','reviews','contact'];
+const secIds=['home','reviews','contact'];
 const secObs=new IntersectionObserver(es=>{
   es.forEach(en=>{if(en.isIntersecting)
     $$('.nav-links a').forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+en.target.id));
@@ -1164,6 +1158,24 @@ secIds.forEach(id=>{const el=document.getElementById(id);if(el)secObs.observe(el
 
 /* burger */
 const burger=$('#burger');
+/* ---------- 2-IN-1 PAGES: landing <-> store ---------- */
+const pageHome=$('#page-home'),pageStore=$('#page-store');
+let curPage='home';
+function showPage(p){
+  if(p===curPage&&p==='home'&&!pageHome.hidden)return;
+  curPage=p;
+  pageHome.hidden=p!=='home';
+  pageStore.hidden=p!=='store';
+  scrollTo(0,0);
+  document.body.classList.remove('menu-open');
+  if(typeof cachePar==='function')cachePar();
+  setTimeout(function(){if(typeof cachePar==='function')cachePar()},400);
+}
+addEventListener('hashchange',function(){
+  const p=location.hash==='#store'?'store':'home';
+  if(p!==curPage)showPage(p);
+});
+if(location.hash==='#store')showPage('store');
 burger.addEventListener('click',e=>{e.stopPropagation();document.body.classList.toggle('menu-open')});
 $$('.m-menu a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
 document.addEventListener('click',e=>{
@@ -1223,13 +1235,9 @@ kettle:`<svg viewBox="0 0 200 200"><defs>${GRAD('g-ke','#fdfaf3','#d5cdbd')}</de
  <rect x="72" y="106" width="9" height="36" rx="4.5" fill="#fff" opacity=".6"/></svg>`
 };
 const MODELS=[
-    {img:'img/tefal-set.jpg',src:'models/granite-pan.glb',  name:'مقلاية الجرانيت — Evita',   prodName:'طقم حلل Evita الحداد التركي الأصلي - 16 قطعة', cat:'مقالي',     desc:'من طقم Evita الحداد التركي — جرانيت غير لاصق بيقلل الزيوت وبتوزع الحرارة بالتساوي، الطقم متوفر بـ 3 مقاسات', n:5999, old:7499, rate:'4.9', revs:154, specs:['جرانيت غير لاصق','أغطية زجاج حراري','3 مقاسات'], art:'pan'},
-    {img:'img/ceramic-linezon.jpg',src:'models/cooking-pot.glb', name:'قدر السيراميك — Linezon',  prodName:'طقم حلل سيراميك Linezon الكوري الأصلي - 11 قطعة', cat:'أواني',     desc:'من طقم Linezon السيراميك الكوري — غير لاصق وسهل التنظيف وأغطية زجاج حراري، متوفر بألوان ومقاسات مختلفة', n:5299, old:5999, rate:'4.8', revs:142,  specs:['سيراميك عالي الجودة','غطاء زجاج حراري','11 قطعة'], art:'pot'},
-    {img:'img/haddad-steel.jpg',src:'models/steel-pot.glb',   name:'قدر الاستيل — الحداد التركي', prodName:'طقم حلل استيل الحداد التركي - 10 قطع', cat:'أواني',     desc:'من طقم الحداد التركي — استانلس مقاوم للصدأ بيوزع الحرارة بالتساوي وأغطية محكمة، 10 قطع', n:5499, old:6999, rate:'4.9', revs:167,  specs:['استانلس مقاوم للصدأ','أغطية محكمة','10 قطع'], art:'pot'},
-    {img:'img/frypan-box.jpg',src:'models/frying-pan.glb',  name:'مقلاية الجرانيت — Martev', prodName:'طقم مقالي جرانيت تركي 3 قطع Martev (20/24/28)', cat:'مقالي',     desc:'من طقم Martev التركي — 3 مقاسات وجرانيت تقيل غير لاصق بيوزع الحرارة بالتساوي', n:1349, old:1799, rate:'4.8', revs:74,  specs:['3 مقاسات','جرانيت تقيل','غير لاصق'], art:'pan'},
-    {img:'img/silicone-black.jpg',src:'models/wooden-spatula.glb',name:'ملعقة السيليكون — طقم 12 قطعة',    prodName:'طقم أدوات مطبخ سيليكون 12 قطعة بيد خشب مع حامل', cat:'إكسسوارات', desc:'من طقم أدوات السيليكون 12 قطعة — سيليكون غذائي مقاوم للحرارة ومقابض خشب مريحة، مع حامل أنيق', n:599,  old:700, rate:'4.9', revs:203,  specs:['سيليكون غذائي','مقابض خشب','مع حامل'], art:'whisk'},
-    {img:'img/silicone-pink.jpg',src:'models/tong.glb',        name:'ملاقطة السيليكون — طقم 12 قطعة',     prodName:'طقم أدوات مطبخ سيليكون 12 قطعة بيد خشب مع حامل', cat:'إكسسوارات', desc:'من طقم أدوات السيليكون 12 قطعة — آمنة على التيفال والسيراميك والجرانيت من غير خدوش',  n:599,  old:700,   rate:'4.9', revs:203,  specs:['سيليكون غذائي','من غير خدوش','12 قطعة'], art:'whisk'},
-    {img:'img/silicone-gray.jpg',src:'models/ladle.glb',       name:'مغرفة الشوربة — طقم 12 قطعة',    prodName:'طقم أدوات مطبخ سيليكون 12 قطعة بيد خشب مع حامل', cat:'إكسسوارات', desc:'من طقم أدوات السيليكون 12 قطعة — سهلة التنظيف ومش بتمتص الروائح أو الألوان', n:599,  old:700,   rate:'4.9', revs:203,  specs:['سهلة التنظيف','مش بتمتص الروائح','12 قطعة'], art:'whisk'}
+    {img:'img/tefal-set.jpg',src:'models/granite-pan.glb',  name:'مقلاية الجرانيت — Evita',   prodName:'طقم حلل Evita الحداد التركي الأصلي - 16 قطعة', cat:'مقالي',     desc:'من طقم Evita الحداد التركي — جرانيت غير لاصق بيقلل الزيوت وبتوزع الحرارة بالتساوي، الطقم متوفر بـ 3 مقاسات', rate:'4.9', revs:154, specs:['جرانيت غير لاصق','أغطية زجاج حراري','3 مقاسات'], art:'pan'},
+    {img:'img/ceramic-linezon.jpg',src:'models/cooking-pot.glb', name:'قدر السيراميك — Linezon',  prodName:'طقم حلل سيراميك Linezon الكوري الأصلي - 11 قطعة', cat:'أواني',     desc:'من طقم Linezon السيراميك الكوري — غير لاصق وسهل التنظيف وأغطية زجاج حراري، متوفر بألوان ومقاسات مختلفة', rate:'4.8', revs:142,  specs:['سيراميك عالي الجودة','غطاء زجاج حراري','11 قطعة'], art:'pot'},
+    {img:'img/frypan-box.jpg',src:'models/frying-pan.glb',  name:'مقلاية الجرانيت — Martev', prodName:'طقم مقالي جرانيت تركي 3 قطع Martev (20/24/28)', cat:'مقالي',     desc:'من طقم Martev التركي — 3 مقاسات وجرانيت تقيل غير لاصق بيوزع الحرارة بالتساوي', rate:'4.8', revs:74,  specs:['3 مقاسات','جرانيت تقيل','غير لاصق'], art:'pan'}
   ];
 const products=[
  {img:'img/silicone-black.jpg', imgs:['img/silicone-black.jpg','img/silicone-pink.jpg','img/silicone-gray.jpg'],
@@ -1239,56 +1247,56 @@ const products=[
  {img:'img/granite-black.jpg', imgs:['img/granite-black.jpg','img/granite-pink.jpg'],
   cat:'أواني', name:'طقم حلل جرانيت كوري Linezon الأصلي - 11 قطعة (Die Cast)',
   price:'٤٩٩٩', n:4999, old:'٥٤٩٩', rate:'4.9', revs:186, tag:'الأكثر مبيعًا', hot:true, model:'models/cooking-pot.glb',
-  desc:'اختاري الجودة اللي تعيش معاكي سنين مع طقم Linezon الكوري الأصلي، المصمم ليجمع بين الأداء العملي والتصميم الأنيق.\nالمميزات:\nتقنية Die Cast الكورية الأصلية - قاعدة مصبوبة بالكامل لمتانة أطول وتوزيع حرارة أعلى من الجرانيت التقليدي.\nطبقة جرانيت عالية الجودة غير لاصقة لتجربة طهي أسهل.\nتوزيع متساوٍ للحرارة يساعد على نضج الطعام بشكل أفضل.\nخامات متينة تتحمل الاستخدام اليومي.\nسهل التنظيف ويوفر وقت ومجهود.\nأغطية زجاج حراري لمتابعة الطهي دون الحاجة لفتح الغطاء.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 11 قطعة.\nالسعر الرسمي: 5,499 جنيه - سعر العرض: 4,999 جنيه (خصم 9%).\nمتوفر الآن بكميات محدودة.'},
+  desc:'اختاري الجودة اللي تعيش معاكي سنين مع طقم Linezon الكوري الأصلي، المصمم ليجمع بين الأداء العملي والتصميم الأنيق.\nالمميزات:\nتقنية Die Cast الكورية الأصلية - قاعدة مصبوبة بالكامل لمتانة أطول وتوزيع حرارة أعلى من الجرانيت التقليدي.\nطبقة جرانيت عالية الجودة غير لاصقة لتجربة طهي أسهل.\nتوزيع متساوٍ للحرارة يساعد على نضج الطعام بشكل أفضل.\nخامات متينة تتحمل الاستخدام اليومي.\nسهل التنظيف ويوفر وقت ومجهود.\nأغطية زجاج حراري لمتابعة الطهي دون الحاجة لفتح الغطاء.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 11 قطعة.\nمتوفر الآن بكميات محدودة.'},
  {img:'img/ceramic-linezon.jpg', imgs:['img/ceramic-linezon.jpg','img/ceramic-pink.jpg'],
   cat:'أواني', name:'طقم حلل سيراميك Linezon الكوري الأصلي - 11 قطعة',
   price:'٥٢٩٩', n:5299, old:'٥٩٩٩', rate:'4.8', revs:142, tag:'جديد', model:'models/cooking-pot.glb',
-  desc:'استمتعي بجودة الطهي مع طقم حلل سيراميك Linezon الكوري الأصلي، المصمم ليجمع بين الأداء العملي والتصميم الأنيق ليكون إضافة مميزة لمطبخك.\nالمميزات:\nطبقة سيراميك عالية الجودة غير لاصقة.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامات متينة تتحمل الاستخدام اليومي.\nسهل التنظيف ويوفر الوقت والمجهود.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري وألوان أنيقة تناسب جميع المطابخ.\nمحتويات الطقم: 11 قطعة، متوفر بألوان ومقاسات مختلفة.\nالسعر الرسمي: 5,999 جنيه - سعر العرض: 5,299 جنيه (خصم 12%).\nاطلبه الآن قبل نفاد الكمية.'},
+  desc:'استمتعي بجودة الطهي مع طقم حلل سيراميك Linezon الكوري الأصلي، المصمم ليجمع بين الأداء العملي والتصميم الأنيق ليكون إضافة مميزة لمطبخك.\nالمميزات:\nطبقة سيراميك عالية الجودة غير لاصقة.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامات متينة تتحمل الاستخدام اليومي.\nسهل التنظيف ويوفر الوقت والمجهود.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري وألوان أنيقة تناسب جميع المطابخ.\nمحتويات الطقم: 11 قطعة، متوفر بألوان ومقاسات مختلفة.\nاطلبه الآن قبل نفاد الكمية.'},
  {img:'img/haddad-steel.jpg', imgs:['img/haddad-steel.jpg','img/haddad-yonca.jpg'],
   cat:'أواني', name:'طقم حلل استيل الحداد التركي - 10 قطع',
   price:'٥٤٩٩', n:5499, old:'٦٩٩٩', rate:'4.9', revs:167, tag:'فخم', model:'models/steel-pot.glb',
-  desc:'استمتعي بأعلى مستويات الجودة مع طقم حلل استيل الحداد التركي، المصنوع من استانلس ستيل عالي الجودة ليمنحك أداءً مميزًا وعمرًا افتراضيًا طويلًا، مع تصميم أنيق يناسب كل مطبخ عصري.\nالمميزات:\nمصنوع من استانلس ستيل عالي الجودة مقاوم للصدأ والتآكل.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامة متينة تتحمل الاستخدام اليومي لسنوات.\nأغطية استانلس محكمة للحفاظ على حرارة الطعام ونكهته.\nسهل التنظيف ويحافظ على لمعانه مع الاستخدام.\nمقابض قوية وآمنة لسهولة الحمل.\nمناسب لمعظم أنواع البوتاجازات.\nيحمل علامة الجودة الخاصة بالمصنع، لضمان مطابقة المنتج لمعايير التصنيع.\nمحتويات الطقم: 10 قطع.\nالسعر الرسمي: 6,999 جنيه - سعر العرض: 5,499 جنيه (خصم 21%).\nمتوفر الآن بكميات محدودة.'},
+  desc:'استمتعي بأعلى مستويات الجودة مع طقم حلل استيل الحداد التركي، المصنوع من استانلس ستيل عالي الجودة ليمنحك أداءً مميزًا وعمرًا افتراضيًا طويلًا، مع تصميم أنيق يناسب كل مطبخ عصري.\nالمميزات:\nمصنوع من استانلس ستيل عالي الجودة مقاوم للصدأ والتآكل.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامة متينة تتحمل الاستخدام اليومي لسنوات.\nأغطية استانلس محكمة للحفاظ على حرارة الطعام ونكهته.\nسهل التنظيف ويحافظ على لمعانه مع الاستخدام.\nمقابض قوية وآمنة لسهولة الحمل.\nمناسب لمعظم أنواع البوتاجازات.\nيحمل علامة الجودة الخاصة بالمصنع، لضمان مطابقة المنتج لمعايير التصنيع.\nمحتويات الطقم: 10 قطع.\nمتوفر الآن بكميات محدودة.'},
  {img:'img/standard-axis.jpg', imgs:['img/standard-axis.jpg','img/standard-lemon.jpg'],
   cat:'أواني', name:'طقم حلل استانلس 10 قطع - Axis Stand 304',
   price:'٣٨٤٩', n:3849, old:'٤٤٩٩', rate:'4.8', revs:129, tag:'جديد',
-  desc:'احصلي على أفضل أداء في مطبخك مع طقم حلل Axis Stand المصنوع من استانلس ستيل 304، المصمم ليتحمل الاستخدام اليومي ويمنحك جودة تدوم مع تصميم أنيق يناسب جميع المطابخ.\nالمميزات:\nمصنوع من استانلس ستيل 304 عالي الجودة، مقاوم للصدأ والتآكل.\nتوزيع متساوٍ للحرارة للحصول على نتائج طهي أفضل.\nخامة قوية تتحمل الاستخدام اليومي لسنوات.\nأغطية استانلس محكمة للحفاظ على حرارة الطعام ونكهته.\nسهل التنظيف ويحافظ على لمعانه.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري يجمع بين الأناقة والعملية.\nمحتويات الطقم: 10 قطع.\nالسعر الرسمي: 4,499 جنيه - سعر العرض: 3,849 جنيه (خصم 15%).'},
+  desc:'احصلي على أفضل أداء في مطبخك مع طقم حلل Axis Stand المصنوع من استانلس ستيل 304، المصمم ليتحمل الاستخدام اليومي ويمنحك جودة تدوم مع تصميم أنيق يناسب جميع المطابخ.\nالمميزات:\nمصنوع من استانلس ستيل 304 عالي الجودة، مقاوم للصدأ والتآكل.\nتوزيع متساوٍ للحرارة للحصول على نتائج طهي أفضل.\nخامة قوية تتحمل الاستخدام اليومي لسنوات.\nأغطية استانلس محكمة للحفاظ على حرارة الطعام ونكهته.\nسهل التنظيف ويحافظ على لمعانه.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم عصري يجمع بين الأناقة والعملية.\nمحتويات الطقم: 10 قطع.\n'},
  {img:'img/kanaka-red.jpg', imgs:['img/kanaka-red.jpg','img/kanaka-pour.jpg','img/kanaka-purple.jpg','img/kanaka-black.jpg'],
   cat:'إكسسوارات', name:'طقم كنك قهوة تركي جرانيت - 3 قطع مع حامل',
   price:'٩٧٤', n:974, old:'١٢٩٩', rate:'4.9', revs:88, tag:'خصم 25٪',
-  desc:'استمتعي بتحضير القهوة التركية بأناقة مع طقم الكنك جرانيت 3 قطع مع حامل، بتصميم عصري وجودة عالية تجمع بين العملية والشكل الراقي.\nالمميزات:\nخامة جرانيت عالية الجودة.\n3 مقاسات مختلفة تناسب جميع احتياجاتك.\nتوزيع متساوٍ للحرارة لتحضير قهوة غنية بالمذاق.\nيد مريحة وعازلة للحرارة لسهولة الاستخدام.\nسهل التنظيف ومناسب للاستخدام اليومي.\nحامل معدني أنيق يحافظ على ترتيب الكنك ويضيف لمسة مميزة للمطبخ.\nمناسب لتحضير القهوة التركية، الحليب، والنسكافيه والمشروبات الساخنة.\nمحتويات الطقم: 3 كنك جرانيت + حامل معدني.\nالسعر الرسمي: 1,299 جنيه - سعر العرض: 974 جنيه (خصم 25%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتحضير القهوة التركية بأناقة مع طقم الكنك جرانيت 3 قطع مع حامل، بتصميم عصري وجودة عالية تجمع بين العملية والشكل الراقي.\nالمميزات:\nخامة جرانيت عالية الجودة.\n3 مقاسات مختلفة تناسب جميع احتياجاتك.\nتوزيع متساوٍ للحرارة لتحضير قهوة غنية بالمذاق.\nيد مريحة وعازلة للحرارة لسهولة الاستخدام.\nسهل التنظيف ومناسب للاستخدام اليومي.\nحامل معدني أنيق يحافظ على ترتيب الكنك ويضيف لمسة مميزة للمطبخ.\nمناسب لتحضير القهوة التركية، الحليب، والنسكافيه والمشروبات الساخنة.\nمحتويات الطقم: 3 كنك جرانيت + حامل معدني.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/kanaka-pour.jpg', imgs:['img/kanaka-pour.jpg','img/kanaka-black.jpg'],
   cat:'إكسسوارات', name:'طقم كنك قهوة تركي استانلس - 3 قطع مع حامل',
   price:'٧٩٩', n:799, old:'٩٩٩', rate:'4.7', revs:63, tag:'خصم 20٪',
-  desc:'استمتعي بتحضير القهوة التركية بأناقة مع طقم الكنك استانلس 3 قطع مع حامل، بتصميم عصري وجودة عالية تجمع بين العملية والشكل الراقي.\nالمميزات:\nخامة استانلس ستيل عالية الجودة.\n3 مقاسات مختلفة تناسب جميع احتياجاتك.\nتوزيع متساوٍ للحرارة لتحضير قهوة غنية بالمذاق.\nيد مريحة وعازلة للحرارة لسهولة الاستخدام.\nسهل التنظيف ومناسب للاستخدام اليومي.\nحامل معدني أنيق يحافظ على ترتيب الكنك ويضيف لمسة مميزة للمطبخ.\nمناسب لتحضير القهوة التركية، الحليب، والنسكافيه والمشروبات الساخنة.\nمحتويات الطقم: 3 كنك استانلس + حامل معدني.\nالسعر الرسمي: 999 جنيه - سعر العرض: 799 جنيه (خصم 20%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتحضير القهوة التركية بأناقة مع طقم الكنك استانلس 3 قطع مع حامل، بتصميم عصري وجودة عالية تجمع بين العملية والشكل الراقي.\nالمميزات:\nخامة استانلس ستيل عالية الجودة.\n3 مقاسات مختلفة تناسب جميع احتياجاتك.\nتوزيع متساوٍ للحرارة لتحضير قهوة غنية بالمذاق.\nيد مريحة وعازلة للحرارة لسهولة الاستخدام.\nسهل التنظيف ومناسب للاستخدام اليومي.\nحامل معدني أنيق يحافظ على ترتيب الكنك ويضيف لمسة مميزة للمطبخ.\nمناسب لتحضير القهوة التركية، الحليب، والنسكافيه والمشروبات الساخنة.\nمحتويات الطقم: 3 كنك استانلس + حامل معدني.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/frypan-box.jpg', imgs:['img/frypan-box.jpg','img/frypan-red.jpg','img/frypan-black.jpg'],
   cat:'مقالي', name:'طقم مقالي جرانيت تركي 3 قطع Martev (20/24/28)',
   price:'١٣٤٩', n:1349, old:'١٧٩٩', rate:'4.8', revs:74, tag:'وصل حديثًا', model:'models/frying-pan.glb',
-  desc:'طقم المقلايات الجرانيت التركي Martev وصل.\n3 مقاسات مختلفة تناسب كل احتياجاتك في المطبخ.\nجرانيت تقيل وجودة عالية بيعيش معاكي سنين.\nغير لاصق نهائي وسهل التنضيف جدًا.\nبيوزع الحرارة بالتساوي علشان أكلك يطلع مظبوط كل مرة.\nشكل أنيق ولمسة تركية فخمة لمطبخك.\nالطقم ده هيخلي الطبخ متعة.\nلو بتحبي الجودة والشياكة، الطقم ده ليكي.\nالمقاسات: 20 سم، 24 سم، 28 سم.\nالسعر الرسمي: 1,799 جنيه - سعر العرض: 1,349 جنيه (خصم 25%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'طقم المقلايات الجرانيت التركي Martev وصل.\n3 مقاسات مختلفة تناسب كل احتياجاتك في المطبخ.\nجرانيت تقيل وجودة عالية بيعيش معاكي سنين.\nغير لاصق نهائي وسهل التنضيف جدًا.\nبيوزع الحرارة بالتساوي علشان أكلك يطلع مظبوط كل مرة.\nشكل أنيق ولمسة تركية فخمة لمطبخك.\nالطقم ده هيخلي الطبخ متعة.\nلو بتحبي الجودة والشياكة، الطقم ده ليكي.\nالمقاسات: 20 سم، 24 سم، 28 سم.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/tray-box.jpg', imgs:['img/tray-box.jpg','img/tray-maroon.jpg','img/tray-mix.jpg','img/tray-black.jpg'],
   cat:'صواني', name:'طقم صواني جرانيت Martev التركي - 3 قطع (26/28/30)',
   price:'١٤٩٩', n:1499, old:'١٩٩٩', rate:'4.9', revs:96, tag:'خصم 25٪',
-  desc:'استمتعي بتحضير أشهى المخبوزات وأكلات الفرن مع طقم صواني جرانيت Martev التركي، المصمم بجودة عالية ليمنحك توزيعًا مثاليًا للحرارة ونتائج طهي رائعة في كل مرة.\nالمميزات:\nيتكون من 3 مقاسات: 26 سم، 28 سم، 30 سم.\nطبقة جرانيت غير لاصقة تمنع التصاق الطعام وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامات متينة تتحمل درجات الحرارة العالية.\nمناسب لتحضير الكيك، المكرونة بالبشاميل، البطاطس، اللحوم، والدجاج وجميع أكلات الفرن.\nمناسب للاستخدام داخل الفرن.\nتصميم تركي أنيق بألوان عصرية تناسب جميع المطابخ.\nالسعر الرسمي: 1,999 جنيه - سعر العرض: 1,499 جنيه (خصم 25%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتحضير أشهى المخبوزات وأكلات الفرن مع طقم صواني جرانيت Martev التركي، المصمم بجودة عالية ليمنحك توزيعًا مثاليًا للحرارة ونتائج طهي رائعة في كل مرة.\nالمميزات:\nيتكون من 3 مقاسات: 26 سم، 28 سم، 30 سم.\nطبقة جرانيت غير لاصقة تمنع التصاق الطعام وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على أفضل نتائج أثناء الطهي.\nخامات متينة تتحمل درجات الحرارة العالية.\nمناسب لتحضير الكيك، المكرونة بالبشاميل، البطاطس، اللحوم، والدجاج وجميع أكلات الفرن.\nمناسب للاستخدام داخل الفرن.\nتصميم تركي أنيق بألوان عصرية تناسب جميع المطابخ.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/tefal-set.jpg', imgs:['img/tefal-set.jpg','img/tefal-box.jpg','img/tefal-2.jpg','img/tefal-3.jpg'],
   cat:'أواني', name:'طقم حلل Evita الحداد التركي الأصلي - 16 قطعة',
   price:'٥٩٩٩', n:5999, old:'٧٤٩٩', rate:'4.9', revs:154, tag:'الأكثر مبيعًا', hot:true,
-  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 16 قطعة.\nالسعر الرسمي: 7,499 جنيه - سعر العرض: 5,999 جنيه (خصم 20%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 16 قطعة.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/tefal-box.jpg', imgs:['img/tefal-box.jpg','img/tefal-2.jpg'],
   cat:'أواني', name:'طقم حلل Evita الحداد التركي الأصلي - 18 قطعة',
   price:'٦٧٩٩', n:6799, old:'٨٤٩٩', rate:'4.8', revs:121, tag:'مميز',
-  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 18 قطعة.\nالسعر الرسمي: 8,499 جنيه - سعر العرض: 6,799 جنيه (خصم 20%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 18 قطعة.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/tefal-2.jpg', imgs:['img/tefal-2.jpg','img/tefal-3.jpg'],
   cat:'أواني', name:'طقم حلل Evita الحداد التركي الأصلي - 20 قطعة',
   price:'٧٥٩٩', n:7599, old:'٩٤٩٩', rate:'4.9', revs:98, tag:'فخم',
-  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 20 قطعة.\nالسعر الرسمي: 9,499 جنيه - سعر العرض: 7,599 جنيه (خصم 20%).\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
+  desc:'استمتعي بتجربة طهي احترافية مع طقم حلل Evita الحداد التركي الأصلي، المصمم بجودة عالية ليجمع بين الأداء العملي والتصميم الأنيق، ويمنحك أفضل النتائج في كل استخدام.\nالمميزات:\nطبقة جرانيت غير لاصقة عالية الجودة تقلل استخدام الزيوت وتسهل التنظيف.\nتوزيع متساوٍ للحرارة للحصول على طهي مثالي في وقت أقل.\nخامات متينة تتحمل الاستخدام اليومي وتدوم لسنوات.\nأغطية زجاج حراري لمتابعة الطعام أثناء الطهي.\nمقابض مريحة وعازلة للحرارة لسهولة وأمان الاستخدام.\nمناسب لمعظم أنواع البوتاجازات.\nتصميم تركي عصري يضيف لمسة راقية لمطبخك.\nمحتويات الطقم: 20 قطعة.\nمتوفر الآن بكميات محدودة، اطلبه قبل نفاد المخزون.'},
  {img:'img/tray-gold-set.jpg', imgs:['img/tray-gold-set.jpg','img/tray-gold-2.jpg','img/tray-gold-3.jpg','img/tray-gold-4.jpg'],
   cat:'صواني', name:'طقم صواني تقديم استانلس مستورد دهبي - 2 قطعة',
   price:'٢٢٤٩', n:2249, old:'٢٩٩٩', rate:'4.9', revs:117, tag:'فخم',
-  desc:'أضيفي لمسة من الأناقة والفخامة إلى سفرتك مع طقم صواني التقديم الاستانلس المستورد، بتصميم راقٍ ولمسات ذهبية مميزة تجعله الخيار المثالي للتقديم في جميع المناسبات.\nالمميزات:\nطقم مكون من 2 قطعة بأحجام عملية: صينية كبيرة وأخرى متوسطة.\nمصنوع من استانلس ستيل عالي الجودة لمتانة تدوم طويلًا.\nطلاء ذهبي أنيق يمنح الصواني مظهرًا فاخرًا.\nمناسب لتقديم الحلويات، المشروبات، القهوة، الشاي والضيافة.\nسهل التنظيف ويحافظ على لمعانه مع الاستخدام.\nمقابض جانبية مريحة لسهولة الحمل والتقديم.\nتصميم كلاسيكي فاخر بحواف مزخرفة يضيف لمسة راقية للمطبخ والسفرة.\nالسعر الرسمي: 2,999 جنيه - سعر العرض: 2,249 جنيه (خصم 25%).\nمتوفر الآن بكميات محدودة.'}
+  desc:'أضيفي لمسة من الأناقة والفخامة إلى سفرتك مع طقم صواني التقديم الاستانلس المستورد، بتصميم راقٍ ولمسات ذهبية مميزة تجعله الخيار المثالي للتقديم في جميع المناسبات.\nالمميزات:\nطقم مكون من 2 قطعة بأحجام عملية: صينية كبيرة وأخرى متوسطة.\nمصنوع من استانلس ستيل عالي الجودة لمتانة تدوم طويلًا.\nطلاء ذهبي أنيق يمنح الصواني مظهرًا فاخرًا.\nمناسب لتقديم الحلويات، المشروبات، القهوة، الشاي والضيافة.\nسهل التنظيف ويحافظ على لمعانه مع الاستخدام.\nمقابض جانبية مريحة لسهولة الحمل والتقديم.\nتصميم كلاسيكي فاخر بحواف مزخرفة يضيف لمسة راقية للمطبخ والسفرة.\nمتوفر الآن بكميات محدودة.'}
 ];/* full catalog = the real photo products */
 const catalog=products.map(function(p){return {img:p.img,imgs:p.imgs,desc:p.desc,model:p.model,
     art:p.art,cat:p.cat,name:p.name,price:p.price,n:p.n,old:p.old,rate:p.rate,tag:p.tag,hot:p.hot}});
 const star='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 15 8.5 22 9.3 17 14l1.2 7L12 17.8 5.8 21 7 14 2 9.3 9 8.5z"/></svg>';
-$('#p-grid').innerHTML=catalog.map(function(p,i){return `
+function cardHTML(p,i){return `
  <article class="p-card" data-cat="${p.cat}" data-idx="${i}" data-delay="${i*40}" data-rv>
    <div class="p-tile">
      <span class="p-tag ${p.hot?'hot':''}">${p.tag||p.cat}</span>
@@ -1305,7 +1313,9 @@ $('#p-grid').innerHTML=catalog.map(function(p,i){return `
        </button>
      </div>
    </div>
- </article>`}).join('');
+ </article>`}
+$('#p-grid').innerHTML=catalog.map(function(p,i){return cardHTML(p,i)}).join('');
+$('#feat-grid').innerHTML=[1,9,12].map(function(i){return cardHTML(catalog[i],i)}).join('');
 $$('.p-card').forEach(el=>revObs.observe(el));
 
 /* shelf (bestsellers) — replaced by the 3D gallery below */
@@ -1314,7 +1324,7 @@ $$('.p-card').forEach(el=>revObs.observe(el));
   const stage=$('#mv-stage'),main=$('#mv-main'),chipsEl=$('#mv-chips'),fallback=$('#mv-fallback');
   const fbImg=document.createElement('img');fbImg.className='mv-fbimg';fbImg.alt='';
   stage.insertBefore(fbImg,fallback);
-  const nameTx=$('#mv-name-tx'),name2=$('#mv-name2'),descEl=$('#mv-desc'),priceEl=$('#mv-price'),
+  const nameTx=$('#mv-name-tx'),name2=$('#mv-name2'),descEl=$('#mv-desc'),
         countEl=$('#mv-count'),rotBtn=$('#mv-rot'),prev=$('#mv-prev'),next=$('#mv-next');
   const catEl=$('#mv-cat'),oldEl=$('#mv-old'),rateEl=$('#mv-rate'),specEl=$('#mv-specs'),infoEl=$('#mv-info');
   if(!stage||!main)return;
@@ -1359,8 +1369,6 @@ $$('.p-card').forEach(el=>revObs.observe(el));
       name2.textContent=m.name;
       catEl.textContent=m.cat;
       descEl.textContent=m.desc;
-      priceEl.textContent=arInt(m.n)+' ج.م';
-      oldEl.textContent=m.old?arInt(m.old)+' ج.م':'';
       rateEl.innerHTML=star.repeat(5)+'<small>'+m.rate+' ('+arInt(m.revs)+' تقييم)</small>';
       specEl.innerHTML=m.specs.map(s=>'<span>'+s+'</span>').join('');
       const show=()=>{if(token===loadToken){stage.classList.remove('sw');infoEl.classList.remove('sw')}};
@@ -1466,7 +1474,7 @@ function renderCart(){
       <div class="cd-thumb">${it.img?`<img src="${it.img}" alt="">`:ART[it.art]||''}</div>
       <div class="cd-info">
         <b>${it.name}</b>
-        <span>${arInt(it.n)} ج.م</span>
+        <span>${arInt(it.n*it.qty)} ج.م</span>
         <div class="cd-row">
           <button class="qty-btn" data-q="+${k}" aria-label="زود الكمية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
           <span class="cd-qty">${arInt(it.qty)}</span>
@@ -1501,12 +1509,12 @@ $('#cd-checkout').addEventListener('click',()=>{
   cartArr.length=0;renderCart();
   setTimeout(closeCart,600);
 });
-$('#p-grid').addEventListener('click',e=>{
+['#p-grid','#feat-grid'].forEach(function(sel){$(sel).addEventListener('click',function(e){
   const add=e.target.closest('[data-add]');
   if(add){const p=catalog[+add.dataset.add];addToCart({name:p.name,n:p.n,img:p.img,art:p.art});flyToCart(add);toastShow(p.name+' — اتضاف للسلة');return}
   const cardEl=e.target.closest('.p-card');
   if(cardEl){openModal(+cardEl.dataset.idx);return}
-});
+});});
 
 /* ---------- PRODUCT MODAL ---------- */
 let pmItem=null,pmQty=1;
@@ -1516,9 +1524,13 @@ function openModal(i){
   $('#pm-cat').textContent=pmItem.cat;
   $('#pm-name').textContent=pmItem.name;
   $('#pm-rate').innerHTML=star.repeat(5)+'<small>'+(pmItem.rate||'٤.٨')+' ('+arInt(pmItem.revs||0)+' تقييم)</small>';
-  $('#pm-desc').innerHTML=(pmItem.desc||'').split('\n').filter(function(l){return l}).map(function(l){return '<span>'+l+'</span>'}).join('');
-  $('#pm-price').textContent=pmItem.price+' ج.م';
-  $('#pm-old').textContent=pmItem.old?pmItem.old+' ج.م':'';
+  $('#pm-desc').innerHTML=(pmItem.desc||'').split('\n').filter(function(l){return l}).map(function(l){
+    if(l.indexOf('المميزات')===0)return '<h5>المميزات</h5>';
+    if(l.indexOf('محتويات الطقم')===0||l.indexOf('الطقم:')===0)return '<h5>المحتويات</h5>';
+    if(l.indexOf('متوفر')===0||l.indexOf('اطلب')===0||l.indexOf('احجز')===0)return '<div class="pm-note">'+l+'</div>';
+    return '<div class="fi">'+l+'</div>';
+  }).join('');
+  updatePM();
   const photo=$('#pm-photo'),thumbs=$('#pm-thumbs');
   if(pmItem.img){
     photo.innerHTML='<img id="pm-img" src="'+pmItem.img+'" alt="'+pmItem.name+'">';
@@ -1536,6 +1548,11 @@ function openModal(i){
   document.body.classList.add('pm-open');
   document.documentElement.classList.add('lock');
   }
+function updatePM(){
+  if(!pmItem)return;
+  $('#pm-price').textContent=arInt(pmItem.n*pmQty)+' ج.م';
+  $('#pm-old').textContent=pmItem.old?arInt(ar2num(pmItem.old)*pmQty)+' ج.م':'';
+}
 function closeModal(){
   document.body.classList.remove('pm-open');
   document.documentElement.classList.remove('lock');
@@ -1546,8 +1563,8 @@ pmOv.addEventListener('click',closeModal);
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeModal();closeCart();document.body.classList.remove('menu-open')}
 });
-$('#pm-plus').addEventListener('click',()=>{pmQty=clamp(pmQty+1,1,99);$('#pm-qty').textContent=arInt(pmQty)});
-$('#pm-minus').addEventListener('click',()=>{pmQty=clamp(pmQty-1,1,99);$('#pm-qty').textContent=arInt(pmQty)});
+$('#pm-plus').addEventListener('click',()=>{pmQty=clamp(pmQty+1,1,99);$('#pm-qty').textContent=arInt(pmQty);updatePM()});
+$('#pm-minus').addEventListener('click',()=>{pmQty=clamp(pmQty-1,1,99);$('#pm-qty').textContent=arInt(pmQty);updatePM()});
 $('#pm-add').addEventListener('click',()=>{
   if(!pmItem)return;
   addToCart({name:pmItem.name,n:pmItem.n,img:pmItem.img,art:pmItem.art},pmQty);
@@ -1620,6 +1637,8 @@ window.__journey=(function(){
       if(!id||id.length<2)return;
       const el=document.getElementById(id.slice(1));
       if(!el)return;
+      const mainOf=el.closest?el.closest('main'):null;
+      if(mainOf&&mainOf.hidden){showPage(mainOf.id==='page-store'?'store':'home');return}
       e.preventDefault();
       const go=()=>{
         let t0=null,from=scrollY;
