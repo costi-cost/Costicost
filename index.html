@@ -192,7 +192,8 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 #loader{position:fixed;inset:0;z-index:2000;overflow:hidden}
 @media (max-width:760px){.ld-brand,.ld-brand-fill{font-size:72px}.ld-stage{width:150px;height:150px}.ld-stage img{width:92px;height:92px}.ld-ico.i1{width:54px}.ld-ico.i2{width:46px}.ld-ico.i3{width:48px}}
 
-/* ============ NAV ============ */background:transparent;transition:background-color .35s ease,box-shadow .35s ease}
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:transparent;transition:background-color .35s ease,box-shadow .35s ease}
 .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   box-shadow:0 1px 0 var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(18px,4vw,48px);transition:padding .3s ease}
@@ -555,7 +556,7 @@ body.pm-open .pmodal{opacity:1;visibility:visible;transform:translate(-50%,-50%)
   .pmodal{flex-direction:column;width:100vw;max-height:94vh;border-radius:24px 24px 0 0;
     top:auto;bottom:0;left:0;transform:translateY(10%)}
   body.pm-open .pmodal{transform:translateY(0)}
-  .pm-photo{min-height:210px}
+  .pm-photo{min-height:170px;max-height:250px}
   .pm-media{flex:none;order:-1}
   .pm-body{padding:22px 20px}
 }
@@ -673,7 +674,7 @@ main{position:relative;z-index:1}
 .ripple{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(201,162,68,.45),rgba(201,162,68,.12));
   transform:scale(0);animation:rip .65s ease-out forwards}
 @keyframes rip{to{transform:scale(3.2);opacity:0}}
-.p-tile{min-height:min(72vw,430px)}
+.p-tile{min-height:min(60vw,340px)}
 .p-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
   background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.30),transparent 55%)}
 .p-card:hover::after{opacity:1}
@@ -1293,7 +1294,7 @@ if(ld&&!reduceMotion){
   const RD=2*Math.PI*78;
   ldRing.style.strokeDasharray=RD;
   ldRing.style.strokeDashoffset=RD;
-  const LD_DUR=3000,ldT0=performance.now();
+  const LD_DUR=2000,ldT0=performance.now();
   let ldTi=-1;
   (function ldTick(){
     const p=clamp((performance.now()-ldT0)/LD_DUR,0,1);
