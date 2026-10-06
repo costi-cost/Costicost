@@ -3993,44 +3993,22 @@ if('IntersectionObserver' in window&&blocks.length){
   set(50);
 })();
 
-/* ---------- SMOOTH INERTIA SCROLL + anchor glide (fine pointers) ---------- */
+/* ---------- anchor glide (native scrolling — no wheel hijack) ---------- */
 (function(){
-  var fine=false;try{fine=matchMedia('(pointer:fine)').matches}catch(e){}
-  root.style.scrollBehavior='auto';
-  var target=window.pageYOffset||0,current=target,run=false;
-  function maxY(){return Math.max(0,doc.documentElement.scrollHeight-innerHeight)}
-  function step(){
-    current+=(target-current)*.105;
-    if(Math.abs(target-current)<.5){current=target;run=false}
-    window.scrollTo(0,current);
-    if(run)requestAnimationFrame(step);
-  }
-  function glide(){if(!run){run=true;requestAnimationFrame(step)}}
-  if(fine){
-    addEventListener('wheel',function(e){
-      if(e.ctrlKey||e.defaultPrevented)return;
-      e.preventDefault();
-      var d=e.deltaMode===1?e.deltaY*16:(e.deltaMode===2?e.deltaY*innerHeight:e.deltaY);
-      target=clamp(target+d,0,maxY());glide();
-    },{passive:false});
-  }
-  /* stay in sync with native scrolling (keyboard, scrollbar drag) */
-  addEventListener('scroll',function(){if(!run){target=current=window.pageYOffset||0}},{passive:true});
-  /* anchor links glide instead of jumping */
   Array.prototype.forEach.call(doc.querySelectorAll('a[href^="#"]'),function(a){
     a.addEventListener('click',function(e){
       var id=a.getAttribute('href');if(!id||id.length<2)return;
       var el=doc.getElementById(id.slice(1));if(!el)return;
       e.preventDefault();
-      target=clamp(el.getBoundingClientRect().top+(window.pageYOffset||0)-70,0,maxY());glide();
-      /* off-screen sections render while passing them (content-visibility) — re-aim until settled */
+      var go=function(){window.scrollTo({top:Math.max(0,el.getBoundingClientRect().top+(window.pageYOffset||0)-70),behavior:'smooth'})};
+      go();
+      /* re-aim briefly in case late-rendering content shifts the target */
       var tries=0,corr=setInterval(function(){
         tries++;
         var d=el.getBoundingClientRect().top-70;
-        if(Math.abs(d)<3||tries>60){clearInterval(corr);return}
-        target=clamp((window.pageYOffset||0)+d,0,maxY());
-        if(!run)glide();
-      },120);
+        if(Math.abs(d)<3||tries>25){clearInterval(corr);return}
+        go();
+      },140);
     });
   });
 })();
